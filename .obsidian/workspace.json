@@ -1,0 +1,154 @@
+{
+  "main": {
+    "id": "1780dacaf36c007c",
+    "type": "split",
+    "children": [
+      {
+        "id": "acd90079034c0e7e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f1b07442b29f688d",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ce56ab99cb9e5769",
+    "type": "split",
+    "children": [
+      {
+        "id": "9c79f4546a0b1233",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6ae5e9006366a302",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a77534b490343bc2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "9d6dd06d8ed420e4",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "609593721fe3aa3a",
+    "type": "split",
+    "children": [
+      {
+        "id": "87fb96f9c7b34516",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ac4c86fc0d05d217",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "43896ba9e5fe3188",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "d05bbf171ff8d3c5",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "55b7440a33e7dff1",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "f1b07442b29f688d",
+  "lastOpenFiles": [
+    "Virtualization.md",
+    "Three easy pieces.md",
+    "Sistema Operativo.md",
+    "Persistence.md",
+    "Pasted image 20230829091614.png",
+    "Pasted image 20230829091227.png",
+    "CPU Virtualization.md",
+    "README.md",
+    "Untitled 1.md",
+    "Untitled.md"
+  ]
+}
