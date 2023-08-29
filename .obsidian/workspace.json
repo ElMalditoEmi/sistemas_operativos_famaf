@@ -11,8 +11,12 @@
             "id": "f1b07442b29f688d",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "CPU Virtualization.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "CPU Virtualization.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "CPU Virtualization.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "CPU Virtualization.md"
+              }
             }
           }
         ]
@@ -140,12 +148,13 @@
   },
   "active": "f1b07442b29f688d",
   "lastOpenFiles": [
+    "attachments",
+    "attachments/Pasted image 20230829091614.png",
     "Virtualization.md",
     "Three easy pieces.md",
     "Sistema Operativo.md",
     "Persistence.md",
-    "Pasted image 20230829091614.png",
-    "Pasted image 20230829091227.png",
+    "attachments/Pasted image 20230829091227.png",
     "CPU Virtualization.md",
     "README.md",
     "Untitled 1.md",
