@@ -8,15 +8,11 @@
         "type": "tabs",
         "children": [
           {
-            "id": "f1b07442b29f688d",
+            "id": "a42b96c34bdd2899",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CPU Virtualization.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "graph",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CPU Virtualization.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CPU Virtualization.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "CPU Virtualization.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -146,18 +138,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f1b07442b29f688d",
+  "active": "a42b96c34bdd2899",
   "lastOpenFiles": [
+    "Process API.md",
+    "Procesos.md",
+    "syscall.md",
+    "CPU Virtualization.md",
+    "Virtualization.md",
+    "Sistema Operativo.md",
+    "Three easy pieces.md",
+    "Persistence.md",
     "attachments",
     "attachments/Pasted image 20230829091614.png",
-    "Virtualization.md",
-    "Three easy pieces.md",
-    "Sistema Operativo.md",
-    "Persistence.md",
     "attachments/Pasted image 20230829091227.png",
-    "CPU Virtualization.md",
     "README.md",
-    "Untitled 1.md",
-    "Untitled.md"
+    "Untitled 1.md"
   ]
 }

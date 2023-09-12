@@ -1,1 +1,10 @@
-{}
+{
+  "obsidian-format-code:format-prettier-TypeScript": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "="
+    }
+  ]
+}

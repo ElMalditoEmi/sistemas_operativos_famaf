@@ -1,5 +1,5 @@
 ## [[CPU Virtualization]]
 
-## RAM virtualization
+## Memory virtualization
 
 ## I/O Virtualization
