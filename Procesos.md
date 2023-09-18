@@ -40,11 +40,37 @@ Ahora que tenemos una imagen mas clara de lo que es un proceso ,podemos hablar d
 # 1.5 Acomodar procesos según su estado
 _*NOTA:Esto se ve mejor explicado cuando hablamos de scheduling mas adelante.*_
 
-Como podemos ver en el gráfico(pensado como diagrama de estados) nuestros proceso se acodan en un **Schedule** para ejecutarse en orden, si tenemos un CPU con un solo núcleo ,solo vamos a poder ir de a un proceso como en la figura 4.3.
-![[Pasted image 20230829091227.png]]
+Como podemos ver en el gráfico(pensado como diagrama de estados) nuestros proceso se acodan en un **Schedule** para ejecutarse en orden, si tenemos un CPU con un solo núcleo ,solo vamos a poder ir de a un proceso como en la figura 4.3 del libro.
+
+
+| Time | $Process_0$ | $Process_1$ | Notes                |
+| ---- | ----------- | ----------- | -------------------- |
+| 1    | Running     | Ready       |                      |
+| 2    | Running     | Ready       |                      |
+| 3    | Running     | Ready       |                      |
+| 4    | Running     | Ready       | $Process_0$ now done |
+| 5    | -           | Running     |                      |
+| 6    | -           | Running     |                      |
+| 7    | -           | Running     |                      |
+| 8    | -           | Running     | $Process_1$ now done |
+
+
 
 En este ejemplo tenemos un comportamiento mas interesante, para no perder el tiempo ,cuando $Process_0$ se bloquea y deja de usar el CPU, es ocupado su lugar por $Process_1$ que al terminar le vuele a dejar su lugar.
 ![[Pasted image 20230829091614.png]]
+
+| Time | $Process_0$ | $Process_1$ | Notes                                      |
+| ---- | ----------- | ----------- | ------------------------------------------ |
+| 1    | Running     | Ready       |                                            |
+| 2    | Running     | Ready       |                                            |
+| 3    | Running     | Ready       | $Process_0$ Initiates I/O                  |
+| 4    | Blocked     | Running     | $Process_0$ Is blocked so $Process_1$ runs |
+| 5    | Blocked     | Running     |                                            |
+| 6    | Blocked     | Running     |                                            |
+| 7    | Ready       | Running     | I/O done                                   |
+| 8    | Ready       | Running     | $Process_1$ now done                       |
+| 9    | Running     | -           |                                            |
+| 10   | Running     | -           | $Process_0$                                           |
 
 # 1.6 Estructuras de datos y procesos
 Un sistema operativo ,como casi todo programa ,maneja estructuras de datos. Con respecto a los procesos el sistema maneja una muy importante llamada **Process List** (lista de procesos), que esta compuesta por todos los procesos que están listos en el momento, y también información útil sobre el proceso que se encuentra _corriendo_ ,así como de los procesos que se quedaron _Bloqueados_ y de los que el OS se va a tener que encargar de poner en _Ready_ una vez completen una llamada a I/0.
