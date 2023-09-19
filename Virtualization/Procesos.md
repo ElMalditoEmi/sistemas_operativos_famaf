@@ -1,3 +1,5 @@
+#complete #Process #ProcessAPI #XV6
+
 # 1.1 Primero que nada:¿Que es un proceso?
 Un proceso no es sino una abstracción que el [[Sistema Operativo|OS]] provee para si mismo ,en si un programa no es nada mas que una serie de lineas inentendibles que están en código maquina guardadas en algún lugar del disco. El sistema operativo es el que "le da vida" a estas instrucciones y se encarga de ejecutarlas ,crear un proceso es la acción del sistema operativo ejecutando un programa.
 
@@ -57,7 +59,6 @@ Como podemos ver en el gráfico(pensado como diagrama de estados) nuestros proce
 
 
 En este ejemplo tenemos un comportamiento mas interesante, para no perder el tiempo ,cuando $Process_0$ se bloquea y deja de usar el CPU, es ocupado su lugar por $Process_1$ que al terminar le vuele a dejar su lugar.
-![[Pasted image 20230829091614.png]]
 
 | Time | $Process_0$ | $Process_1$ | Notes                                      |
 | ---- | ----------- | ----------- | ------------------------------------------ |
