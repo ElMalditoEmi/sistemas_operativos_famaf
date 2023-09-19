@@ -137,8 +137,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -159,11 +158,11 @@
   "active": "a42b96c34bdd2899",
   "lastOpenFiles": [
     "CPU Virtualization.md",
+    "Process API.md",
     "Procesos.md",
     "Persistence.md",
     "Three easy pieces.md",
     "Sistema Operativo.md",
-    "Process API.md",
     "syscall.md",
     "Virtualization.md",
     "attachments",
