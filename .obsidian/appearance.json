@@ -1,5 +1,9 @@
 {
-  "accentColor": "",
+  "accentColor": "#8139b1",
   "cssTheme": "Things",
-  "baseFontSize": 19
+  "baseFontSize": 16,
+  "nativeMenus": false,
+  "interfaceFontFamily": "",
+  "textFontFamily": "",
+  "enabledCssSnippets": []
 }

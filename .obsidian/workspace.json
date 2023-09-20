@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "7762087379c8a333",
+        "id": "25453c1951a8c1cd",
         "type": "tabs",
         "children": [
           {
-            "id": "b7d4ab4ef0ce9f81",
+            "id": "09ff65a1eab04bfb",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "[[Limi",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,7 +65,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -137,7 +138,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -155,20 +157,21 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "b7d4ab4ef0ce9f81",
+  "active": "09ff65a1eab04bfb",
   "lastOpenFiles": [
-    "Virtualization/Process API.md",
-    "Virtualization/Procesos.md",
-    "Virtualization/Limited Direct Execution.md",
-    "Virtualization/syscall.md",
-    "Virtualization/Virtualization.md",
     "Virtualization/CPU Virtualization.md",
-    "UNIX.md",
+    "Virtualization/Virtualization.md",
+    "Virtualization/Process API.md",
     "Sistema Operativo.md",
-    "Three easy pieces.md",
+    "Virtualization/Limited Direct Execution.md",
     "README.md",
-    "Concurrency.md",
     "Persistence.md",
+    "syscall.md",
+    "Virtualization/syscall.md",
+    "Virtualization/Procesos.md",
+    "UNIX.md",
+    "Three easy pieces.md",
+    "Concurrency.md",
     "Virtualization",
     "attachments",
     "attachments/Pasted image 20230829091614.png",

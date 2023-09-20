@@ -1,0 +1,150 @@
+/* Obsidian default theme uses centered headers? */
+/* I rather not */
+table thead tr th {
+	text-align: left;
+}
+
+/*
+=========================
+=======Customizers=======
+=========================
+These are custom "hacks" that can be applied to any
+table (with/without custom table visual css).
+If you're already using other classes in your note,
+remember you can stack these in the cssclass 
+parameter, like:
+
+cssclass: tableClass1, hackClass2, userClass3, etc
+
+
+
+/* --------------------------------------------   */
+/* Make tables width same as default note width   */
+/* --------------------------------------------   */
+.wideTable table {
+	min-width: 100%;
+}
+/* --------------------------------------------   */
+
+
+/* --------------------------------------------   */
+/* Left align mandatory                           */
+/* --------------------------------------------   */
+.leftAlign th,
+.leftAlign td {
+	text-align: left !important;  
+}
+/* --------------------------------------------   */
+
+
+/* --------------------------------------------   */
+/* 1st cell short text, 2nd th bigger text        */
+/* --------------------------------------------   */
+.fixedFc thead tr th:first-child,
+.fixedFc tbody tr td:first-child {
+	width: 8em;
+	min-width: 8em;
+	max-width: 8em;
+	word-break: break-all;
+}
+.fixedFc th:nth-child(2) {
+    padding: 9px 20px;
+    font-size: 21px;
+}
+.fixedFc td:nth-child(2),
+.fixedFc tr > td:last-of-type { 
+	white-space: nowrap;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	max-width: 17em;
+}
+/* --------------------------------------------   */
+
+
+/* --------------------------------------------   */
+/* 1st cell big text, 2nd small.                  */
+/* --------------------------------------------   */
+.wideFc td:nth-child(1),
+.wideFc tr > td:last-of-type { 
+	white-space: nowrap;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	max-width: 36em;
+}
+/* --------------------------------------------   */
+
+/* --------------------------------------------   */
+/* If you wanna change table margin, do it here   */
+/* --------------------------------------------   */
+.customMargin table {
+	margin: 25px 0;
+}
+/* --------------------------------------------   */
+    
+
+
+
+
+
+/* --------------------------------------------   */
+/* White red table.                               */
+/* --------------------------------------------   */
+.whiteRed table {
+	box-shadow:0 0 20px 0 rgba(0,0,0,.15);
+}
+.whiteRed th,
+.whiteRed td {
+	border: 0 none;
+}
+.whiteRed th {	
+	font-family:Lato-Bold;
+	font-size:15px;
+	color:#fa4251;
+	background-color: white !important;
+	border-bottom:1px solid #cccccc;
+	padding: 14px 15px;
+}
+.whiteRed td {	
+	font-family:Lato-Regular;
+	font-size:15px;
+	color:gray;
+	line-height:1.5;
+	padding: 5px 15px;
+}
+.whiteRed table > tbody > tr {
+	border-bottom: 1px solid #cccccc;
+}
+.whiteRed table > tbody > tr:last-child > td {
+	border-bottom: 2px solid #b3b3b3;
+}
+.whiteRed tbody tr:hover td {
+	background-color: #ffcccc;
+	color: #4d4d4d;
+}
+/* --------------------------------------------   */
+.whiteRed-rounded table {
+    border-collapse: separate;
+    border: solid #b3b3b3 1px;
+    border-radius: 6px;
+    border-spacing: 0px;
+}
+.whiteRed-rounded table > tbody > tr > td {
+	border-bottom: 1px solid #ccccccbb;
+}
+.whiteRed-rounded table > tbody > tr:last-child > td {
+	border-bottom: thin #ccccccbb;
+}
+.whiteRed-rounded table th:first-of-type{
+	border-top-left-radius: 6px;
+}
+.whiteRed-rounded table th:last-of-type{
+	border-top-right-radius: 6px;
+}
+.whiteRed-rounded table tr:last-child td:first-child {
+    border-bottom-left-radius: 5px;
+}
+.whiteRed-rounded table tr:last-child td:last-child {
+    border-bottom-right-radius: 5px;
+}
+/* --------------------------------------------   */
+

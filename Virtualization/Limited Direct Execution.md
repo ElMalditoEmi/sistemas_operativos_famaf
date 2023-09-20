@@ -12,15 +12,8 @@ Todo esto cobra mas sentido a medida que vayamos desarrollando el capitulo y pro
 # 1. Direct Execution
 Para correr programas de la forma mas veloz que se pueda propongamos este _mecanismo_ ,que en pocas palabras,  pone al programa directamente a correr sobre la CPU ,y le da al proceso la idea de que es dueño de todo el recurso.
 ## 1.1 ¿Como se corre un programa bajo este mecanismo?
-Cuando el usuario pide que se corra un programa, nuestro [[Sistema Operativo]] se encarga de alojarle algo de memoria, lo pone en la _lista de procesos_ ,pone las instrucciones del programa en la memoria ,localiza la _primera instrucción_ y hace un salto hasta esta _en User mode_. Una vez el programa termino ,el [[Sistema Operativo]] vuelve a tomar control y se pone en _Kernel mode_.
-
-Antes de seguir sepamos que son estos modos.
-#### ¿Que diablos es User y Kernel mode?
-Primero ,_User mode_ es el estado en el que el CPU esta al momento de estar manejando un proceso ,lo importante a saber es que tiene un _Set de instrucciones_ limitado, y para realizar operaciones mas delicadas tiene que recurrir al _Kernel mode_, este otro tiene otro _Set de instrucciones_ y como ya dijimos se encarga de las cuestiones delicadas de manejar ,como por ejemplo administrar la memoria ,o organizar las estructuras del [[Sistema Operativo]] tales como la lista de procesos.
-
-Es importante saber que ambos tienen _Contexto distinto_ con esto ,nos referimos a que nuestro CPU, tiene guardados en los _registros_ valores distintos cuando esta en _Kernel mode_ , y en _User mode_.
-
-## 1.2 Problemas de la DE
+Cuando el usuario pide que se corra un programa, nuestro [[Sistema Operativo]] se encarga de alojarle algo de memoria, lo pone en la _lista de procesos_ ,pone las instrucciones del programa en la memoria ,localiza la _primera instrucción_ y hace un salto hasta esta. Una vez el programa termino con la ultima instrucción ,el [[Sistema Operativo]] vuelve a tomar control y prepara su siguiente acción.
+## 1.2 Problemas de la Direct Execution
 
 ### 1.2.3 Monopolización de CPU
 Hay una sutileza en los pasos que describimos antes ,*"...Una vez el programa termino..."* ,pero no podemos asegurar de ninguna manera que nuestro programa es por ejemplo uno de la forma:
@@ -35,10 +28,79 @@ int main(void)
 	return 0;
 }
 ```
-Este programa nunca debería finalizar ,y el [[Sistema Operativo]] nunca podrá recuperar el control. Mas aún tener cosas como bucles infinitos podría no ser tan evidente como en este caso ,por lo que hay que solucionar esto.
-
+Este programa nunca podría finalizar por si mismo,y el [[Sistema Operativo]] nunca podrá recuperar el control. Mas aún tener cosas como bucles infinitos podría no ser tan evidente como en este caso ,por lo que tratar de predecir bucles infinitos es una mala idea ,por encima de eso ,la teoría de la computación nos dice que no existe un programa que pueda predecir lo que hace otro programa ,pero eso es de otra materia.
 ### 1.2.3 Mantener el control 
 Al darle a un procesos control absoluto del recurso ,nuestro [[Sistema Operativo]] lo pierde y ya no tiene forma de por ejemplo detener un programa y poner a ejecutar otro. Esto en consecuencia quita la posibilidad de tener el *sharing* que es vital para que se comporte como describimos en la introducción.
 
+### 1.2.4 Garantizar la integridad de otros programas 
+Uno podría tener la inocencia que dándole todo el poder de nuestro hardware a un programa ,este no va a ser maliciosos. Por ejemplo que pasa si un programa decide que va a escribir todo el disco con basura ,dejando inútil esa instalación del [[Sistema Operativo]].
+
+
 ## 1.3 Demos soluciones: LDE([[Limited Direct Execution]])
-Para empezar dar la solución a los problemas que trae la ejecución directa es evidente que hay que ponerle _limites_ a nuestros procesos ,para que no tengan el mismo poder que el [[Sistema Operativo]].
+Es evidente que hay que ponerle _limites_ a lo que un procesos puede hacer y lo que no. Poniendo estos _limites_ tenemos como objetivo mantener esas ventajas de correr un programa directamente en el procesador ,pero asegurándonos de que nunca nuestro [[Sistema Operativo]] pierda el control.
+### 1.3.1 Restringir las operaciones
+Para empezar a mejorar nuestro mecanismo de ejecución de procesos ,vamos a introducir los modos del procesador.
+Un procesador como hardware esta preparado para colaborar con el [[Sistema Operativo]] brindándole dos modos:
+
+#### User mode:
+Un programa que corre en un procesador bajo este modo ,tiene limitado el set de instrucciones que puede usar ,por ejemplo un programa que esta en este modo no puede pedir lecturas y escrituras de disco ,entre otras operaciones peligrosas. Si el programa ,intentara hacerlo de igual manera ,nuestro [[Sistema Operativo|OS]] simplemente le tira _[[Process API#5. Mas allá de lo básico|kill()]]_. Los procesos comunes corren todo el tiempo en este modo.
+#### Kernel mode:
+Esta es la contra parte de el user mode ,cuando el procesador esta en este modo puede manejar instrucciones de mayor privilegio ,y que requieren mas responsabilidad para asegurar la integridad del [[Sistema Operativo|OS]]. El [[Sistema Operativo]] corre todo el tiempo en este modo.
+
+Mas adelante introducimos la noción de [[Limited Direct Execution#Context switch|Context switch]] que es esencial para terminar de definir estos modos.
+
+### 1.3.2 System calls (Syscalls)
+Lo normal es preguntarse ahora, ¿como es que un programa logra realizar alguna operación restringida sin peligro?
+La respuesta es que no puede... Pero puede pedir que el [[Sistema Operativo]] se encargue de hacerlo ,para esto existen las _Syscalls_. Son exactamente peticiones al [[Sistema Operativo]] para que se encargue de hacer operaciones peligrosas que un [[Procesos|proceso]] podría hacer mal ,o simplemente con malicia.
+De esta forma podemos exponer todos los recursos que tiene nuestra maquina de una forma mas segura. Es por eso que tenemos la capacidad de crear procesos, alojar memoria , hacer I/O ,entre otras cosas que se llevan a cabo con syscalls.
+
+### ¿Que implica hacer una Syscall?
+Para ejecutar una Syscall hay que usar una instrucción especial del procesador llamada _trap_.
+Esta instrucción cambia el modo de nuestro procesador ,de [[Limited Direct Execution#User mode|User mode]] a [[Limited Direct Execution#Kernel mode|Kernel mode]] y le devuelve el control al [[Sistema Operativo]] , es entonces cuando este ultimo revisa si _"fue despertado"_ para hacer una acción  privilegiada que pidió el proceso, una vez que la haya terminado realiza la contra-instrucción que hizo el proceso, esta es _return-from-trap_, que en efecto le devuelve el control al proceso que _'trapeó'_.
+
+### Trap and save the context
+Cuando se ejecuta la instrucción _trap_, el hardware se asegura de _guardar el contexto_ que tenia el programa que hizo una [[Limited Direct Execution#1.3.2 System calls (Syscalls)|System call]], con esto principalmente nos referimos a guardar en algún lado los valores que tenían los registros antes de trapear. En x86 se guardan las cosas en espacios de memoria conocida respectivamente por ambos modos.
+### Trap table
+Un problema un poco menos obvio ,es tener programas haciendo saltos a donde hay instrucciones del kernel. Cuando el [[Sistema Operativo]] **bootea** le dice al hardware que hay bloques de instrucciones que se corren solamente por el kernel, y que se usan en situaciones especificas. También al _bootear_ crea una _tabla_ que tiene las instrucciones de como manejar estas situaciones especificas (_trap handlers_).
+Cuando el programa realiza una _trap_ también informa cual fue, indicando una de la _trap table_ y el kernel entonces puede saber que _handler_ usara.
+
+### Sumario del concepto de trap
+
+#### Ejemplo con syscalls y traps
+- Un programa decide hacer una _Syscall_.
+
+- Se lleva a cabo la instrucción _trap_.
+
+- El [[Sistema Operativo|OS]] retoma el control sabiendo que fue por el uso de _trap_.
+
+- Identifica en la _trap table_ el _trap handler_ correspondiente y salta a ese bloque de instrucciones.
+
+- Una vez las haya finalizado hace _return-from-trap_.
+
+- El proceso retoma el control y continua su ejecución.
+
+Mas detalladamente veamos el cuadro siguiente como una linea del tiempo de arriba hacia abajo.
+
+| Tarea de hardware                                         | OS(Kernel mode)                             | Programa(User mode)   |
+| --------------------------------------------------------- | ------------------------------------------- | --------------------- |
+|                                                           | Agregar el programa a la lista de procesos  |                       |
+|                                                           | Alojar memoria para el programa             |                       |
+|                                                           | Cargar el programa en memoria               |                       |
+|                                                           | Prepararle el stack con los argv[]          |                       |
+| Guardar los registros del kernel en algún lugar y el PC   |                                             |                       |
+|                                                           | return-from-trap                            |                       |
+| Pasar a user mode                                         |                                             |                       |
+| Saltar a a la main del programa                           |                                             | Correr main()         |
+|                                                           |                                             | ...                   |
+|                                                           |                                             | Hacer una system call |
+|                                                           |                                             | trap                  |
+| Guardar los registros del proceso                         |                                             |                       |
+| Pasar a kernel mode                                       |                                             |                       |
+| Saltar al trap handler correspondiente                    |                                             |                       |
+|                                                           | Handle trap                                 |                       |
+|                                                           | Ejecutar la instrucciones de la system call |                       |
+|                                                           | return-from-trap                            |                       |
+| Restaurar los registros del user y guardar los del kernel |                                             |                       |
+| Pasar a user mode                                         |                                             |                       |
+| Hacer salto al PC que guardamos                           |                                             |                       |
+|                                                           |                                             | Continuar la ejecución                       |

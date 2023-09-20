@@ -4,7 +4,7 @@ En UNIX hay dos formas importantes de crear procesos, sin embargo hay algunas ma
 
 
 # 1. Creando procesos con `fork()`
-La [[syscall]] fork() ,es una de las llamadas que crean procesos. En resumen al ser invocada en un programa que esta corriendo ,fork se encarga clonar el proceso y añadir este nuevo clon a la [[Procesos#1.6 Estructuras de datos y procesos#1.6.1 Como se ve esto en XV6|process list]] de forma que ahora tenemos 2 veces el mismo proceso ejecutando *Casi independientemente* el uno del otro, y ambos corren desde la instrucción siguiente a la llamada a _fork()_.
+La [[Limited Direct Execution]] fork() ,es una de las llamadas que crean procesos. En resumen al ser invocada en un programa que esta corriendo ,fork se encarga clonar el proceso y añadir este nuevo clon a la [[Procesos#1.6 Estructuras de datos y procesos#1.6.1 Como se ve esto en XV6|process list]] de forma que ahora tenemos 2 veces el mismo proceso ejecutando *Casi independientemente* el uno del otro, y ambos corren desde la instrucción siguiente a la llamada a _fork()_.
 
 Ambos programas pueden modificar sus variables como dueños absolutos y estas tampoco están vinculadas de uno a otro.
 Parece medio inútil tener dos procesos que tratan de hacer lo mismo, pero si revisamos la manpage de _fork()_ ,vamos a ver que si guardamos el resultado de la llamada en una variable en el proceso "padre" el que llamo a *fork()* ,vamos a tener el _PID(Process ID)_ de su proceso "hijo" guardado en esta variable. Mientras que desde la perspectiva del proceso hijo ,tenemos en esa variable guardado el valor 0.
@@ -36,7 +36,7 @@ Si bien puede parecer que el programa es inofensivo , tiene un problema bastante
 ### ¿Porque pasa eso?
 Es consecuencia de tener procesos paralelos ,en este programa es imposible determinar que proceso va a pedir el buffer para hacer _printf()_ primero.
 ### ¿Se puede evitar?
-Si y para esto presentamos la siguiente [[syscall]].
+Si y para esto presentamos la siguiente [[Limited Direct Execution]].
 
 ---
 # 2. Solucionando el problema anterior con wait()
