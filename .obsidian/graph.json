@@ -4,19 +4,27 @@
   "showTags": true,
   "showAttachments": false,
   "hideUnresolved": false,
-  "showOrphans": true,
+  "showOrphans": false,
   "collapse-color-groups": false,
-  "colorGroups": [],
-  "collapse-display": false,
+  "colorGroups": [
+    {
+      "query": "tag:#Process  ",
+      "color": {
+        "a": 1,
+        "rgb": 14701138
+      }
+    }
+  ],
+  "collapse-display": true,
   "showArrow": false,
-  "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1,
-  "lineSizeMultiplier": 1,
-  "collapse-forces": true,
-  "centerStrength": 0.518713248970312,
-  "repelStrength": 10,
-  "linkStrength": 1,
-  "linkDistance": 250,
-  "scale": 1.0136432647705078,
+  "textFadeMultiplier": -0.1,
+  "nodeSizeMultiplier": 1.72618181818182,
+  "lineSizeMultiplier": 1.02763636363636,
+  "collapse-forces": false,
+  "centerStrength": 0.203636363636364,
+  "repelStrength": 8.82226345083488,
+  "linkStrength": 0.797328385899815,
+  "linkDistance": 353,
+  "scale": 0.6757621765136719,
   "close": false
 }

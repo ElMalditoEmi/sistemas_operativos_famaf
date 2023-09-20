@@ -135,5 +135,6 @@ Y como es ingenuo pensar que todos los procesos se comportan así, también esta
 ## 1.5 Guardar y restaurar el contexto
 Ahora que nuestro _OS_ es capaz de retomar el control bajo cualquier circunstancia quisiéramos volver a enfocarnos en la idea de _compartir los recursos_, osea el comportamiento de tomar turnos entre procesos para utilizar el CPU, la decision de ver cual es el que va siguiente la discutimos en otro momento cuando veamos al [[Process scheduling|Scheduler]] en detalle.
 
-Por ahora caractericemos la capacidad de _detener un procesos y continuarlo después_.
+Por ahora caractericemos la capacidad de _para un procesos y continuarlo después_.
 ### Context switch
+
