@@ -13,6 +13,8 @@ Todo esto cobra mas sentido a medida que vayamos desarrollando el capitulo y pro
 Para correr programas de la forma mas veloz que se pueda propongamos este _mecanismo_ ,que en pocas palabras,  pone al programa directamente a correr sobre la CPU ,y le da al proceso la idea de que es dueño de todo el recurso.
 ## 1.1 ¿Como se corre un programa bajo este mecanismo?
 Cuando el usuario pide que se corra un programa, nuestro [[Sistema Operativo]] se encarga de alojarle algo de memoria, lo pone en la _lista de procesos_ ,pone las instrucciones del programa en la memoria ,localiza la _primera instrucción_ y hace un salto hasta esta. Una vez el programa termino con la ultima instrucción ,el [[Sistema Operativo]] vuelve a tomar control y prepara su siguiente acción.
+
+--- 
 ## 1.2 Problemas de la Direct Execution
 
 ### 1.2.3 Monopolización de CPU
@@ -132,9 +134,88 @@ Cabe mencionar que al hacer una _interrupción_ el hardware también es responsa
 ### Sobre los enfoques.
 En un [[Sistema Operativo]] consistente consideramos ambas visiones, si a veces los procesos son tan razonables como para terminar o hacer _yield()_ antes de un _timer interrupt_ estamos cubiertos.
 Y como es ingenuo pensar que todos los procesos se comportan así, también estamos cubiertos.
+
+### Nota sobre concurrencia
+Si bien es tema de otros mecanismos, uno se pregunta cosas como ¿Puede ocurrir una _Interrupción mientras se esta en 'handleando' una syscall_? ¿Que pasa si esto ocurre?
+
+La respuesta corta es que esencialmente se desactivan las interrupciones, mientras el [[Sistema Operativo]] tiene el control, cosa que tiene sentido, el mecanismo esta ahí justamente para asegurar eso.
+Cuando veamos herramientas de concurrencia como _spinlocks, semáforos,etc_ vamos a ver que si bien es delicado, desactivar las interrupciones es lo que tiene sentido.
+
+---
 ## 1.5 Guardar y restaurar el contexto
-Ahora que nuestro _OS_ es capaz de retomar el control bajo cualquier circunstancia quisiéramos volver a enfocarnos en la idea de _compartir los recursos_, osea el comportamiento de tomar turnos entre procesos para utilizar el CPU, la decision de ver cual es el que va siguiente la discutimos en otro momento cuando veamos al [[Process scheduling|Scheduler]] en detalle.
+Ahora que nuestro _OS_ es capaz de retomar el control bajo cualquier circunstancia quisiéramos volver a enfocarnos en la idea de _compartir los recursos_, osea el comportamiento de tomar turnos entre procesos para utilizar el CPU, la decision de ver a cual proceso le toca su turno la discutimos en otro momento cuando veamos al [[Process scheduling|Scheduler]] en detalle.
 
 Por ahora caractericemos la capacidad de _para un procesos y continuarlo después_.
 ### Context switch
+En el momento en que se decide cambiar de un proceso a otro, se ejecuta una pieza de _código de bajo nivel_ a la que nos referimos como _context switch_. De lo que se encarga es de _guardar_ el contenido de algunos registros y otra información del estado del proceso _que esta en ejecución_ y _sustituirlo_ con el de el proceso al que _vamos a cambiar_.
 
+*Mas en detalle*, en primer lugar el OS ,decide que va a cambiar de proceso luego de alguna *interrupción*, hace _trap_ y entra en _modo kernel_, procede a _guardar contexto_; entonces ejecutamos código assembly, para guardar el contenido de los registros de propósitos generales, también el *PC(Program Counter)* , que corresponden al proceso y una vez guardados en el _kernel stack_ lo reemplaza por sus relativos del _proceso al que vamos a cambiar_. Luego de esto hay un _return-from-trap_ que resulta en tener al otro proceso ahora ejecutando en el CPU.
+
+### Switch()
+Esta es precisamente la rutina implementada en XV6 (y en UNIX en general) que se encarga de cuidadosamente guardar los registros en el Kernel stack( Kstack ), así como el PC.
+Cuando el [[Sistema Operativo]] decida que va a cambiar de proceso va a llamar a *switch()*.
+
+[[|]]
+
+### Cambio de contexto implícito
+Hay que notar que realmente en esta sección revisamos dos tipos de cambio de contexto.
+
+El primero es el que explicamos que tiene que ver con pasar de ejecutar un proceso A a ejecutar un Proceso B.
+
+El otro lo aprendimos implícitamente, este es el que sucede al devolverle el control al OS, recordemos que este también existe como proceso y tiene sus registros , y PC independiente de los demás procesos ,por lo que ahí también hay un cambio de contexto.
+### Para concluir
+A continuación un ejemplo bien concreto en forma de linea del tiempo
+
+| Hardware                                    | Os(Kernel mode)                                                                  | Process A | Process B |
+| ------------------------------------------- | -------------------------------------------------------------------------------- | --------- | --------- |
+|                                             |                                                                                  | ...       |           |
+|                                             |                                                                                  | Running   | Ready     |
+| Timer Interrupt                             |                                                                                  |           |           |
+| Guardar el contexto de A                    |                                                                                  |           |           |
+| Pasar a kernel mode                         |                                                                                  |           |           |
+| Darle el control al OS                      |                                                                                  |           |           |
+|                                             | Handle trape                                                                     |           |           |
+|                                             | Decide cambiar a B                                                               |           |           |
+|                                             | Llama a _switch()_                                                               |           |           |
+|                                             | Guardar los registro de A, así como el PC en la proc table                       |           |           |
+|                                             | Restaurar los registros de B y su PC desde la proc table y ponerlos en el Kstack |           |           |
+|                                             | return-from-trap (poner a B a ejecutar )                                         |           |           |
+| Restaurar el estado de B leyendo del Kstack |                                                                                  |           |           |
+| Pasar a user mode                           |                                                                                  |           |           |
+| Saltar al PC de B                           |                                                                                  |           |           |
+|                                             |                                                                                  | Ready     | Running   |
+
+# [[CPU Virtualization|FIN]]
+
+## Código de switch() en XV6.
+```c
+# Context switch
+#
+#   void swtch(struct context **old, struct context *new);
+# 
+# Save the current registers on the stack, creating
+# a struct context, and save its address in *old.
+# Switch stacks to new and pop previously-saved registers.
+
+.globl swtch
+swtch:
+  movl 4(%esp), %eax
+  movl 8(%esp), %edx
+
+  # Save old callee-saved registers
+  pushl %ebp
+  pushl %ebx
+  pushl %esi
+  pushl %edi
+
+  # Switch stacks
+  movl %esp, (%eax)
+  movl %edx, %esp
+
+  # Load new callee-saved registers
+  popl %edi
+  popl %esi
+  popl %ebx
+  popl %ebp
+  ret
+```

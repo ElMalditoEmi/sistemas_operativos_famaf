@@ -159,7 +159,7 @@ Otras cuestiones que quedan abiertas en este cierre son las _señales_ y en part
 
 En estos dos tópicos estaría bueno que el lector ahonde por su cuenta ,ya que no hay un nexo muy claro con los capítulos que siguen ,al menos en el corto plazo.
 
-# Fin
+# [[CPU Virtualization|FIN]]
 
 # Términos útiles para investigar
 

@@ -115,7 +115,7 @@ Un sistema operativo ,como casi todo programa ,maneja estructuras de datos. Con 
 
 En el código se ve la implementación de la abstracción proceso que se mostró en los capítulos anteriores ,en este caso en XV6. Entre las partes mas importantes esta:
 - *Register Context* : Que se encarga de que al detener un proceso que tenia que seguir ejecutando ,el estado actual de sus registros se guarde para poder continuar su ejecución en algún otro momento. Esta técnica/mecanismo se conoce como [[Limited Direct Execution#Context switch|Context Switch]]  y se ve en el [[CPU Virtualization#2. Process API|próximo capitulo]].
-# FIN
+# [[CPU Virtualization|FIN]]
 ### Términos clave para este capitulo
 • The *process* is the major OS abstraction of a running program. At
 any point in time, the process can be described by its state: the con-
