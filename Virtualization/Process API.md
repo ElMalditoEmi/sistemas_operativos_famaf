@@ -1,4 +1,4 @@
-#complete #Process #ProcessAPI
+#complete 
 # Intro
 En UNIX hay dos formas importantes de crear procesos, sin embargo hay algunas mas de las que se explican acá, que derivan de estas pero que tienen algunas posibilidades mas concretas.
 

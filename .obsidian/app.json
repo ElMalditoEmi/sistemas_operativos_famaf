@@ -1,4 +1,7 @@
 {
   "attachmentFolderPath": "attachments",
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "livePreview": true,
+  "tabSize": 4,
+  "readableLineLength": false
 }

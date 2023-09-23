@@ -1,9 +1,11 @@
 {
   "accentColor": "#8139b1",
   "cssTheme": "Things",
-  "baseFontSize": 16,
+  "baseFontSize": 20,
   "nativeMenus": false,
   "interfaceFontFamily": "",
   "textFontFamily": "",
-  "enabledCssSnippets": []
+  "enabledCssSnippets": [
+    "math"
+  ]
 }

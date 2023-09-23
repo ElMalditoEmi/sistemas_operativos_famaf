@@ -1,4 +1,4 @@
-#Process #ProcessAPI #incomplete #Mechanism 
+#complete  
 # Intro
 Para lograr la [[Virtualization]] nuestro [[Sistema Operativo]] necesita lograr que se _comparta_ de forma eficiente entre los procesos nuestro recurso a virtualizar, la CPU. El [[Sistema Operativo]] tiene esta capacidad tan bien conseguida que hay _sensación de simultaneidad_.
 
@@ -143,7 +143,7 @@ Cuando veamos herramientas de concurrencia como _spinlocks, semáforos,etc_ vamo
 
 ---
 ## 1.5 Guardar y restaurar el contexto
-Ahora que nuestro _OS_ es capaz de retomar el control bajo cualquier circunstancia quisiéramos volver a enfocarnos en la idea de _compartir los recursos_, osea el comportamiento de tomar turnos entre procesos para utilizar el CPU, la decision de ver a cual proceso le toca su turno la discutimos en otro momento cuando veamos al [[Process scheduling|Scheduler]] en detalle.
+Ahora que nuestro _OS_ es capaz de retomar el control bajo cualquier circunstancia quisiéramos volver a enfocarnos en la idea de _compartir los recursos_, osea el comportamiento de tomar turnos entre procesos para utilizar el CPU, la decision de ver a cual proceso le toca su turno la discutimos en otro momento cuando veamos al [[Scheduling|Scheduler]] en detalle.
 
 Por ahora caractericemos la capacidad de _para un procesos y continuarlo después_.
 ### Context switch
@@ -154,8 +154,6 @@ En el momento en que se decide cambiar de un proceso a otro, se ejecuta una piez
 ### Switch()
 Esta es precisamente la rutina implementada en XV6 (y en UNIX en general) que se encarga de cuidadosamente guardar los registros en el Kernel stack( Kstack ), así como el PC.
 Cuando el [[Sistema Operativo]] decida que va a cambiar de proceso va a llamar a *switch()*.
-
-[[|]]
 
 ### Cambio de contexto implícito
 Hay que notar que realmente en esta sección revisamos dos tipos de cambio de contexto.

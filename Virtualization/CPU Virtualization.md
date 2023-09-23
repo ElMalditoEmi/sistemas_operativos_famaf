@@ -12,3 +12,7 @@ Este es un capitulo esencial de entender y revistar,  por encima de eso puede se
 Ahora si vamos a empezar a entender que hace el OS para correr un proceso.
 
 Los conceptos vitales que vamos a ver son _Kernel mode_ ; _User mode_ ; el mecanismo _LDE([[Limited Direct Execution]])_ ; _Traps/Trap handlers_ ; _Context switch_ ;_Interrupts_ ; Entre otros.
+
+# 4. [[Scheduling]]
+Ya discutimos las cosas que hace el [[Sistema Operativo]] en el bajo nivel para cambiar de un proceso a otro, ahora vamos a discutir sobre el alto nivel: en que caso _deberíamos cambiar_ ,y como _elegir de la mejor manera_ el próximo proceso a correr.
+

@@ -1,4 +1,4 @@
-#complete #Process #ProcessAPI #XV6
+#complete
 
 # 1.1 Primero que nada:¿Que es un proceso?
 Un proceso no es sino una abstracción que el [[Sistema Operativo|OS]] provee para si mismo ,en si un programa no es nada mas que una serie de lineas inentendibles que están en código maquina guardadas en algún lugar del disco. El sistema operativo es el que "le da vida" a estas instrucciones y se encarga de ejecutarlas ,crear un proceso es la acción del sistema operativo ejecutando un programa.
@@ -14,7 +14,7 @@ Prácticamente todos (si es que no, todos) los [[Sistema Operativo|OS]] debería
 
 - **Otros controles**:También esta bueno tener procesos que se **suspenden** en vez de simplemente morir y perder todo el progreso. Suspender un procesos lo hace dejar de correr y tener capacidad de continuar luego desde ese punto.
 
-- **Mostrar el estado**:Saber sobre los procesos en muy util ,como vamos a ver mas abajo en [[Process scheduling]], para acomodar un proceso en un schedule de forma eficiente tenemos que saber cuanto tiempo lleva corriendo ,incluso algunas implementaciones querrán saber con cuanto esfuerzo se corre un programa.
+- **Mostrar el estado**:Saber sobre los procesos en muy util ,como vamos a ver mas abajo en [[Scheduling]], para acomodar un proceso en un schedule de forma eficiente tenemos que saber cuanto tiempo lleva corriendo ,incluso algunas implementaciones querrán saber con cuanto esfuerzo se corre un programa.
 
 En el [[Process API|próximo capitulo]] se discuten las implementaciones reales de toda esta API.
 

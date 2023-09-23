@@ -14,5 +14,13 @@
       ],
       "key": "-"
     }
+  ],
+  "obsidian-html-tags-autocomplete:html_autocomplete_tags-skip_over_tag_backward": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "'"
+    }
   ]
 }
