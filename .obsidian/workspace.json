@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Virtualization/Scheduling.md",
+                "file": "Concurrency.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Virtualization/Scheduling.md",
+                "file": "Concurrency.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Virtualization/Scheduling.md",
+                "file": "Concurrency.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Virtualization/Scheduling.md"
+                "file": "Concurrency.md"
               }
             }
           },
@@ -159,10 +159,16 @@
   },
   "active": "84bb7b81459e73a5",
   "lastOpenFiles": [
+    "Persistence.md",
+    "Virtualization/Scheduling.md",
+    "attachments/Pasted image 20230926212444.png",
+    "attachments/Pasted image 20230926211006.png",
+    "attachments/Pasted image 20230926210547.png",
+    "attachments/Pasted image 20230926205710.png",
+    "attachments/Pasted image 20230926205012.png",
     "attachments/Pasted image 20230829091227.png",
     "attachments/Pasted image 20230829091614.png",
     "attachments/Pasted image 20230923000749.png",
-    "Virtualization/Scheduling.md",
     "Excalidraw/Drawing 2023-09-22 20.31.05.excalidraw.md",
     "Excalidraw",
     "Untitled.canvas",
@@ -185,7 +191,6 @@
     "Intro.md",
     "Sistema Operativo.md",
     "README.md",
-    "Persistence.md",
     "syscall.md",
     "Virtualization/syscall.md",
     "UNIX.md",

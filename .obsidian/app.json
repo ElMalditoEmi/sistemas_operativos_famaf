@@ -3,5 +3,7 @@
   "alwaysUpdateLinks": true,
   "livePreview": true,
   "tabSize": 4,
-  "readableLineLength": false
+  "readableLineLength": true,
+  "strictLineBreaks": false,
+  "rightToLeft": false
 }
